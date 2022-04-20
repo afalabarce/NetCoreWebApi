@@ -1,0 +1,354 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AuctionSalesListDAL</name>
+    </assembly>
+    <members>
+        <member name="M:AuctionSalesListDAL.Extensions.CryptoExtensions.Decrypt(System.String)">
+            <summary>
+            Desencripta una cadena utilizando la clave privada.
+            </summary>
+            <param name="encryptedString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Extensions.CryptoExtensions.Encrypt(System.String)">
+            <summary>
+            Encripta una cadena utilizando la clave privada.
+            </summary>
+            <param name="decryptedString"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AuctionSalesListDAL.ExternalDAL.HispatecErpAgroDAL">
+            <summary>
+            Entidad que abstrae la lectura de entidades external para el proveedor de software Hispatec y ErpAgro
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.ExternalDAL.HispatecErpAgroDAL.ApiSettings">
+            <summary>
+            Obtiene o establece los parámetros de configuración necesarios para el uso de los métodos de la entidad.
+            </summary>
+        </member>
+        <member name="T:AuctionSalesListDAL.Interfaces.IExternalSync">
+            <summary>
+            Interfaz que implementarán todas las entidades que se utilicen para extraer información de software de terceros para facilitar la integración
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Interfaces.IExternalSync.ApiSettings">
+            <summary>
+            Obtiene o establece los parámetros de configuración necesarios para el uso de los métodos de la entidad.
+            </summary>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetCompanies">
+            <summary>
+            Obtiene las empresas dadas de alta en el Sistema de Base de Datos del cliente
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetBatchById(System.Int32)">
+            <summary>
+            Obtiene una partida por el  Id del Sistema de Base de Datos del Cliente
+            </summary>
+            <param name="batchId">Id (Clave Primaria) de la partida en el SGBD del Cliente</param>
+            <returns>Entidad Batch si encuentra una que corresponda con el Id proporcionado, null en caso de no encontrarla (o un error)</returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetBatchByProviderIdentifier(System.String)">
+            <summary>
+            Obtiene una partida a partir del identificador interno (no PK) del SGBD del Cliente
+            </summary>
+            <param name="providerIdentifier">Identificador de la partida en el SGBD del Client (no PK)</param>
+            <returns>Entidad Batch si encuentra una que corresponda con el Identificador proporcionado, null en caso de no encontrarla (o un error)</returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetBatches(System.Int32,System.Nullable{System.DateTime},System.Nullable{System.DateTime},AuctionSalesListDAL.Models.Supplier,AuctionSalesListDAL.Models.Supplier,AuctionSalesListDAL.Models.Product,AuctionSalesListDAL.Models.Product)">
+            <summary>
+            Obtiene un listado de partidas en base a varios criterios de selección
+            </summary>
+            <param name="AuctionCenterId">Identificador del centro de subasta (obligatorio)</param>
+            <param name="fromDate">Desde Fecha</param>
+            <param name="toDate">Hasta Fecha</param>
+            <param name="fromSupplier">Desde Proveedor (identificador no PK). Si lleva un % aplicará un like y no se tendrá en cuenta el toSupplier, además también buscará en el nombre del proveedor</param>
+            <param name="toSupplier">Hasta Proveedor (Identificador no PK)</param>
+            <param name="fromProduct">Desde Producto (Identificador no PK). Si lleva un % no aplica el valor de toProduct, además de que buscará en el nombre del artículo.</param>
+            <param name="toProduct">Hasta Producto (Identificador no PK)</param>
+            <returns>Lista de partidas que cumplen los criterios descritos.</returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetCustomerById(System.Int32)">
+            <summary>
+            Obtiene un Cliente a partir del Id (PK) en el SGBD externo
+            </summary>
+            <param name="customerId">Identificador (PK) del cliente</param>
+            <returns>Objeto Cliente cargado a partir del Id proporcionado, null en caso de no encontrarlo o error</returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetCustomerByHumanReadableIdentifier(System.String)">
+            <summary>
+            Obtiene un cliente a partir de su código legible (no PK) dado de alta en el SGBD externo.
+            </summary>
+            <param name="humanReadableIdentifier">Código legible que identifica al cliente</param>
+            <returns>Entidad Cliente cargada a partir del código legible, null en caso de no encontrarlo o error</returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetCustomers(System.String,System.String,System.String,System.String)">
+            <summary>
+            Obtiene una lista de clientes dados de alta en el SGBD externo, a partir de los filtros dados
+            </summary>
+            <param name="fromIdentifier">Desde Identificador legible. Si lleva un % aplica un like y no se tiene en cuenta a toIdentifier (Hasta Identificador)</param>
+            <param name="toIdentifier">Hasta Identificador legible.</param>
+            <param name="fromName">Desde Nombre de Cliente. Si lleva un % aplica un like y no se tiene en cuenta a toName (Hasta Nombre)</param>
+            <param name="toName">Hasta Nombre</param>
+            <returns>Lista de CLientes que cumplen con los filtros indicados</returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetProductById(System.Int32)">
+            <summary>
+            Obtiene un producto en el SGBD externo a partir de su Identificador único (PK) 
+            </summary>
+            <param name="productId">Identificador único del producto (PK)</param>
+            <returns>Producto que se identifica con productId, null en caso de no encontrarlo o error</returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetProductByHumanReadableIdentifier(System.String)">
+            <summary>
+            Obtiene un producto en el SGBD externo a partir de su identificador legible (no PK)
+            </summary>
+            <param name="humanReadableIdentifier">Identificador legible del producto (no PK)</param>
+            <returns></returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetProducts(System.String,System.String,System.String,System.String)">
+            <summary>
+            Obtiene una lista de productos del SGBD externo a partir de los filtros indicados
+            </summary>
+            <param name="fromIdentifier">Desde Identificador legible (no PK). Si lleva un %, se interpreta como un like y se ignora el valor de toIdentifier (Hasta Identificador legible)</param>
+            <param name="toIdentifier">Hasta Identificador legible (no PK)</param>
+            <param name="fromName">Desde Nombre de Producto. Si lleva un %, se interpreta como un like y se ignora el valor de toName (Hasta Nombre de Producto)</param>
+            <param name="toName">Hasta Nombre de Producto</param>
+            <returns>Lista de productos que cumplen los criterios de filtrado, lista vacía en caso de no obtener ninguno.</returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetSupplierById(System.Int32)">
+            <summary>
+            Obtiene un Proveedor dado de alta en el SGBD externo identificado por el identificador supplierId (PK)
+            </summary>
+            <param name="supplierId">Identificador único (PK)</param>
+            <returns>Proveedor identificado por supplierId, null en caso de no encontrarlo o error</returns>
+        </member>
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetSupplierByHumanReadableIdentifier(System.String)">
+            <summary>
+            Obtiene un proveedor del SGBD externo identificado por su Identificador legible (no PK).
+            </summary>
+            <param name="humanReadableIdentifier">Identificador legible que identifica al proveedor</param>
+            <returns>Proveedor identificado por humanReadableIdentifier, null en caso de no encontrarlo o error</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:AuctionSalesListDAL.Interfaces.IExternalSync.GetSuppliers(System.String,System.String,System.String,System.String)" -->
+        <member name="M:AuctionSalesListDAL.Interfaces.IExternalSync.GetUnsoldCauses">
+            <summary>
+            Obtiene la lista de Causas sin Vender dadas de alta en el SGBD externo
+            </summary>
+            <returns>Lista de causas sin vender, lista vacía si no hay ninguna</returns>
+        </member>
+        <member name="T:AuctionSalesListDAL.Models.AuctionSaleList">
+            <summary>
+            Entidad Listín de Venta de Alhóndiga
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleList.Id">
+            <summary>
+            Identificador único para el Listín
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleList.Date">
+            <summary>
+            Fecha de creación del Listín
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleList.AuctionCenterId">
+            <summary>
+            Id del centro de subasta
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleList.CustomerId">
+            <summary>
+            Cliente al que se vende la mercancía (será null si existe una causa sin vender)
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleList.ProductId">
+            <summary>
+            Producto que se va a vender (o que se queda sin vender)
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleList.UnsoldCauseId">
+            <summary>
+            Causa por la que no se vende lo indicado en el listín (será null si existe un cliente al que se vende)
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleList.AuctionCut">
+            <summary>
+            Corte en el que se aplica el precio de venta
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleList.Price">
+            <summary>
+            Precio de venta, será 0 si la causa sin vender está establecida
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleList.Comments">
+            <summary>
+            Comentarios sobre la venta realizada
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleList.Details">
+            <summary>
+            Desglose de las partidas / lotes de entrada vendidos
+            </summary>
+        </member>
+        <member name="T:AuctionSalesListDAL.Models.AuctionSaleListDetail">
+            <summary>
+            Entidad que almacena el desglose de venta de un listín
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleListDetail.Id">
+            <summary>
+            Identificador único del desglose
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleListDetail.AuctionSaleListId">
+            <summary>
+            Identificador único del listín con el que está relacioando este desglose
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleListDetail.BatchId">
+            <summary>
+            Partida / lote de entrada vendida en el listín de venta
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleListDetail.ContainersSold">
+            <summary>
+            Cantidad de envases de la partida vendidos
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.AuctionSaleListDetail.WeightSold">
+            <summary>
+            Peso neto de producto vendido de la partida
+            </summary>
+        </member>
+        <member name="T:AuctionSalesListDAL.Models.Batch">
+            <summary>
+            Entidad que almacena la información relativa a una partida / lote de entrada
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Batch.Id">
+            <summary>
+            Identificador único
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Batch.ProviderIdentifier">
+            <summary>
+            Identificador legible proporcionado por el fabricante de software
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Batch.AuctionCenterId">
+            <summary>
+            Id del centro de subasta al que está asignada la partida
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Batch.BatchDate">
+            <summary>
+            Fecha de creación de la partida / lote de entrada
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Batch.Product">
+            <summary>
+            Producto de la partida
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Batch.Supplier">
+            <summary>
+            Proveedor de la partida
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Batch.ItemsQuantity">
+            <summary>
+            Número de envases que componen la partida
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Batch.NetWeight">
+            <summary>
+            Peso neto total de la partida
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Batch.AdditionalComments">
+            <summary>
+            Observaciones a la partida
+            </summary>
+        </member>
+        <member name="T:AuctionSalesListDAL.Models.Customer">
+            <summary>
+            Entidad que almacena los datos básicos para un cliente
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Customer.Id">
+            <summary>
+            Identificador único del cliente
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Customer.HumanReadableIdentifier">
+            <summary>
+            Código legible que identifica al cliente
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Customer.FullName">
+            <summary>
+            Nombre completo del cliente
+            </summary>
+        </member>
+        <member name="T:AuctionSalesListDAL.Models.Product">
+            <summary>
+            Entidad que almacena la información relativa a productos a vender
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Product.Id">
+            <summary>
+            Identificador único del producto
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Product.HumanReadableIdentifier">
+            <summary>
+            Código legible del producto
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Product.FullName">
+            <summary>
+            Nombre completo del producto
+            </summary>
+        </member>
+        <member name="T:AuctionSalesListDAL.Models.Supplier">
+            <summary>
+            Entidad que almacena la información necesaria para identificar a proveedores
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Supplier.Id">
+            <summary>
+            Identificador único del Proveedor
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Supplier.HumanReadableIdentifier">
+            <summary>
+            Código legible que identifica al proveedor
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.Supplier.FullName">
+            <summary>
+            Nombre completo del proveedor
+            </summary>
+        </member>
+        <member name="T:AuctionSalesListDAL.Models.UnsoldCause">
+            <summary>
+            Entidad que almacena las causas sin vender
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.UnsoldCause.Id">
+            <summary>
+            Identificador único de la causa sin vender
+            </summary>
+        </member>
+        <member name="P:AuctionSalesListDAL.Models.UnsoldCause.Description">
+            <summary>
+            Descripción legible de la causa sin vender
+            </summary>
+        </member>
+    </members>
+</doc>

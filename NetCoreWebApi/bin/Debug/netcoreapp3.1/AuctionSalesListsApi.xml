@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NetCoreWebApi</name>
+    </assembly>
+    <members>
+        <member name="T:NetCoreWebApi.Controllers.AuthController">
+            <summary>
+            Controlador para la gestión de autenticación
+            </summary>
+        </member>
+        <member name="M:NetCoreWebApi.Controllers.AuthController.Get">
+            <summary>
+            Ejecuta la autenticación inicial, con la que obtener un token de autorización de acceso
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NetCoreWebApi.DAL.NetCoreWebApiDbContext">
+            <summary>
+            Contexto de acceso a base de datos mediante EntityFramework (CodeFirst)
+            </summary>
+        </member>
+        <member name="M:NetCoreWebApi.DAL.NetCoreWebApiDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{NetCoreWebApi.DAL.NetCoreWebApiDbContext})">
+            <summary>
+            Constructor para la clase
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:NetCoreWebApi.DAL.NetCoreWebApiDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{NetCoreWebApi.DAL.NetCoreWebApiDbContext},Microsoft.Extensions.Options.IOptions{NetCoreWebApi.ModelSettings.NetCoreApiSettings})">
+            <summary>
+            Constructor para la clase
+            </summary>
+            <param name="options"></param>
+            <param name="settings"></param>
+        </member>
+        <member name="M:NetCoreWebApi.Extensions.CryptoExtensions.Decrypt(System.String)">
+            <summary>
+            Desencripta una cadena utilizando la clave privada.
+            </summary>
+            <param name="encryptedString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NetCoreWebApi.Extensions.CryptoExtensions.Encrypt(System.String)">
+            <summary>
+            Encripta una cadena utilizando la clave privada.
+            </summary>
+            <param name="decryptedString"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

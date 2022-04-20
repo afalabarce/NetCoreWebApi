@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{AD29CA39-4708-4634-85B5-9176176A7D00}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="NetCoreWebApiSolution" expanded="True" selected="True">
+            <Node name="NetCoreWebApi" expanded="True">
+              <Node name="Authentication" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="DAL" expanded="True" />
+              <Node name="Extensions" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="ModelSettings" expanded="True">
+                <Node name="Common" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>Configuration.GetValue&lt;AuctionListApiSettings&gt;("AuctionListApiSettings")</Value>
+          <Value>Configuration.GetChildren().ToList()</Value>
+          <Value>password.Encrypt()</Value>
+          <Value>this.dbContext.webApiUsers.FirstOrDefault()</Value>
+          <Value>this.dbContext.UnsoldCauses.Where(uc =&gt; uc.Id == primaryIdentifier).FirstOrDefault()</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.NetCoreWebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>

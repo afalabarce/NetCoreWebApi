@@ -1,0 +1,4 @@
+﻿<Properties StartupConfiguration="{AD29CA39-4708-4634-85B5-9176176A7D00}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.NetCoreWebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>
