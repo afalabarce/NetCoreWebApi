@@ -1,2 +1,10 @@
 # NetCoreWebApi
-Tipical and simple .Net Core WebApi REST Service, for usage as stating project
+Typical and simple .Net Core WebApi REST service, to use as a starter project.
+
+Implements JWT token authentication against a database (Sql Server, PostgreSql and MySql engines are supported).
+
+Some example RSA keys are generated, using the online RSA key generation website.
+
+Authentication is done in two phases:
+1. The login and password are sent encrypted with the public key (bearer authentication header format <encrypted user:password string> to the api/Auth Controller.
+2. If the credentials are valid, a token is obtained in the x-authjwttoken header, which will be used in each webservice call (new tokens are always generated in each request).
