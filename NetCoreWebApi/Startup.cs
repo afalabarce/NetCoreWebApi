@@ -122,7 +122,7 @@ namespace NetCoreWebApi
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement { { new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "ApiKey" } }, Array.Empty<string>() } }); });
         }
         
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, NetCoreWebApiDbContext dbContext)
         {
             app.UseSwagger();
             app.UseSwaggerUI();
@@ -145,7 +145,9 @@ namespace NetCoreWebApi
                 endpoints.MapControllers();
                 // By default, we launch swagger's web
                 endpoints.MapControllerRoute("default", "swagger");
-            });            
+            });    
+            
+            dbContext.Database.Migrate();
         }
     }
 }
