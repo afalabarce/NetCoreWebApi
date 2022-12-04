@@ -41,7 +41,7 @@ namespace NetCoreWebApi.DAL
 
 
             NetCoreWebApiDbContext returnValue = new NetCoreWebApiDbContext(optionsBuilder.Options);
-            
+            returnValue.Database.Migrate();
             return returnValue;
         }
     }
